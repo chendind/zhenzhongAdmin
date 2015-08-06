@@ -1,0 +1,12 @@
+<div class="noresault" data-subheight="199">
+	<div>
+		<i class="flaticon-info27"></i>
+		<p>There's no result.</p>
+	</div>
+</div>
+<script>
+	var H = $(window).height();
+	var a=(986>=$("body").width())?44:0;
+	var nrst = $(".noresault");
+	nrst.css("height",H-nrst.attr('data-subheight')+'px');
+</script>
