@@ -1,0 +1,36 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN" debug='true'>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+    <link href="" rel="icon">
+    <link rel="stylesheet" type="text/css" href="../resource/css/flaticon/flaticon.css"> 
+    <link rel="stylesheet" type="text/css" href="../resource/css/common/reset.css">
+    <link rel="stylesheet" type="text/css" href="../resource/css/common/page404.css">
+    <script src="../resource/js/jquery/jquery-1.7.2.min.js"></script>
+   <!-- // <script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script>  -->
+  </head>
+  <body>
+      <div class="shang">
+          <img src="../resource/img/404icon.png" alt="">
+          <div class="word">
+            <h1>Oops! Page not found.</h1>
+            <p>sorry but the page you are looking for does not exist, have been removed or name changed.</p>
+            <p>You can take these actions.</p>
+          </div>
+      </div>
+      <div class="xia">
+        <div class="vline"></div>
+        <div class="chaline">
+          <a onclick="history.go(-1);" class="goback"></a>
+          <a href="../public/public.html" class="gohome"></a>
+          <a class="contact"></a>
+        </div>
+      </div>
+      <script>
+          sessionStorage.removeItem("pagehref");
+      </script>
+  </body>
+</html>
