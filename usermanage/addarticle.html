@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/resource/css/flaticon/flaticon.css">
+	<link rel="stylesheet" href="__PUBLIC__/resource/css/common/content.css">
+	<link href="__PUBLIC__/uedit/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+
+</head>
+<body>
+	<div class="line">
+		<h1>新增文章</h1>
+		
+	</div>
+	<form method="post" action="__URL__/articlerest" enctype="multipart/form-data">
+	<table class="tableB">
+		<tr>
+			<th>标题</th>
+			<td>
+				<input name="title" type="text" required="required"/>
+			</td>
+		</tr>
+		<tr>
+			<th>正文：</th>
+			<td>
+				<script id="container" name="content" type="text/plain" >
+        
+				</script>
+   
+			</td>
+		</tr>
+		<tr>
+			<th></th>
+			<td>
+				<input type="hidden" name="operation" value="add" />
+				<button type="submit" class="btn ui-green">提交</button>
+			</td>
+		</tr>
+	</table>	    	
+	</form>
+	<script src="__PUBLIC__/resource/js/jquery/jquery-1.7.2.min.js"></script>
+	<script src="__PUBLIC__/resource/js/common/ui.js"></script>
+	 <!-- 配置文件 -->
+    <script type="text/javascript" src="__PUBLIC__/uedit/umeditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="__PUBLIC__/uedit/umeditor.min.js"></script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UM.getEditor('container');
+    </script>
+</body>
+</html>

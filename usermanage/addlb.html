@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/resource/css/flaticon/flaticon.css">
+	<link rel="stylesheet" href="__PUBLIC__/resource/css/common/content.css">
+</head>
+<body>
+	<div class="line">
+		<h1>新增轮播图</h1>
+		
+	</div>
+	<form method="post" action="__URL__/lbrest" enctype="multipart/form-data">
+	<table class="tableB">
+		<tr>
+			<th>标题</th>
+			<td>
+				<input name="title" type="text" required="required"/>
+			</td>
+		</tr>
+		<tr>
+			<th>图片（建议尺寸750 × 352，最大200k）：</th>
+			<td>
+		<a class="btn file ui-white">
+			上传图片
+			<input data-maxsize="200" name="img" type="file" class="imgfile" required="required" />
+		</a>
+	
+			</td>
+		</tr>
+		<tr>
+			<th>超链接：</th>
+			<td>
+				<input name="url" type="url" required="required" />
+			</td>
+		</tr>
+		<tr>
+			<th>轮播图显示顺序：</th>
+			<td>
+				<input name="rank" type="number" min="1" max="1000" value="1" required="required"/>
+			</td>
+		</tr>
+		<tr>
+			<th></th>
+			<td>
+				<input type="hidden" name="operation" value="add" />
+				<button type="submit" class="btn ui-green">提交</button>
+			</td>
+		</tr>
+	</table>	    	
+	</form>
+	<script src="__PUBLIC__/resource/js/jquery/jquery-1.7.2.min.js"></script>
+	<script src="__PUBLIC__/resource/js/common/ui.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/resource/css/flaticon/flaticon.css">
+	<link rel="stylesheet" href="__PUBLIC__/resource/css/common/content.css">
+		<link href="__PUBLIC__/uedit/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+	<div class="line">
+		<h1>修改文章</h1>
+		
+	</div>
+	<form method="post" action="__URL__/articlerest" enctype="multipart/form-data">
+	<table class="tableB">
+		<tr>
+			<th>标题</th>
+			<td>
+				<input name="title" type="text" value="{$detail.article_title}" required="required"/>
+			</td>
+		</tr>
+		<tr>
+			<th>正文：</th>
+			<td>
+					<script id="container" name="content" type="text/plain">
+        {$detail.article_content|htmlspecialchars_decode|stripslashes}
+				</script>
+			</td>
+		</tr>
+		<tr>
+			<th></th>
+			<td>
+				<button  class="btn file ui-white" onClick="window.history.go(-1)">返回</button>
+				<neq  name="perm" value='\"common\"'>
+					<input type="hidden" name="id" value="{$detail.article_id}" />
+					<input type="hidden" name="operation" value="edit" />
+					<button type="submit" class="btn ui-green">修改</button>
+				</neq>
+				
+				
+				
+			</td>
+		</tr>
+	</table>	    	
+	</form>
+	<script src="__PUBLIC__/resource/js/jquery/jquery-1.7.2.min.js"></script>
+	<script src="__PUBLIC__/resource/js/common/ui.js"></script>
+	 <!-- 配置文件 -->
+    <script type="text/javascript" src="__PUBLIC__/uedit/umeditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="__PUBLIC__/uedit/umeditor.min.js"></script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UM.getEditor('container');
+	
+    </script>
+</body>
+</body>
+</html>

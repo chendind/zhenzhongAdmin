@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/resource/css/flaticon/flaticon.css">
+	<link rel="stylesheet" href="__PUBLIC__/resource/css/common/content.css">
+</head>
+<body>
+	<div class="line">
+		<h1>首页轮播图管理</h1>
+		
+	</div>
+	<table class="tableA">
+		<tr>
+			<th>ID</th>
+			<th>发布时间</th>
+			<th>图片</th>
+			<th>标题</th>
+			<th>超链接</th>
+			<th>轮播图显示顺序</th>
+			<th>修改</th>
+			<th>移除</th>
+		</tr>
+		
+		
+		<volist name="list" id="vo">
+			
+		<tr>
+			<form method="post" action="__URL__/lbrest">
+			<td>{$vo.lb_id}</td>
+			<td>{$vo.lb_time|date='Y-m-d',###}</td>
+			<td>
+				<img style="width:250px;height:117px;" src="{$vo.lb_img}" ></img>
+			</td>
+			<td>
+				<input required="required" class="lineinput" name="title" type="text" value="{$vo.lb_title}" />
+			</td>
+			<td>
+				<input required="required" class="lineinput" name="url" type="url"  value="{$vo.lb_weburl}" />
+			</td>
+				
+			<td>
+				<input type="hidden" name="id" value="{$vo.lb_id}" />
+				<input type="hidden" name="operation" value="edit" />
+				<input class="lineinput" style="width:30px" name="rank" required="required" type="number" min="1" max="1000" value="{$vo.lb_rank}" />
+			</td>
+			<td>
+				<button type="submit" class="btn ui-green">修改</button>
+			</td>
+			</form>
+			<form method="post" action="__URL__/lbrest">
+			<td>
+				<input type="hidden" name="id" value="{$vo.lb_id}" />
+				<input type="hidden" name="operation" value="delete" />
+				<button type="submit" class="btn ui-red">删除</button>
+			</td>
+			</form>
+		</tr>
+			
+		</volist>
+		
+	</table>
+	
+	<div class="line">
+		<a class="btn ui-green" href="__URL__/addlb">新增</a>
+	</div>
+	
+	<script src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="__PUBLIC__/resource/js/common/ui.js"></script>
+</body>
+</html>

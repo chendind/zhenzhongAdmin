@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/resource/css/flaticon/flaticon.css">
+	<link rel="stylesheet" href="__PUBLIC__/resource/css/common/content.css">
+</head>
+<body>
+	<div class="line">
+		<h1>文章管理</h1>
+		
+	</div>
+	<table class="tableA">
+		<tr>
+			<th>ID</th>
+			<th>上次修改时间</th>
+			<th>标题</th>
+			<th>超链接</th>
+			<th>上次编辑的管理员</th>
+			<th>查看与修改</th>
+			<th>移除</th>
+		</tr>
+		
+		
+		<volist name="list" id="vo">
+			
+		<tr>
+			<form method="post" action="__URL__/articlerest">
+			<td>
+				<input type="hidden" name="id" value="{$vo.article_id}" />
+				{$vo.article_id}
+			</td>
+			<td>{$vo.article_time|date='Y-m-d H:m:s',###}</td>
+			<td>
+				{$vo.article_title}
+			</td>
+			<td>
+				<a target="_blank" href="http://zz.leovito.com/index.php/Home/Article/get/id/{$vo.article_id}">
+					http://zz.leovito.com/index.php/Home/Article/get/id/{$vo.article_id}
+				</a>
+			</td>
+			<td>
+				{$vo.adminname}
+			</td>
+				
+			<td>
+				<a type="submit" href="__URL__/editarticle/id/{$vo.article_id}" class="btn ui-green">查看与修改</a>
+			</td>
+			<td>
+				<input type="hidden" name="operation" value="delete" />
+				<button type="submit" class="btn ui-red">删除</button>
+			</td>
+			</form>
+		</tr>
+			
+		</volist>
+		
+	</table>
+	<div class="line ui-pagenav">
+		<gt name="p" value="1">
+		<div class="left">
+			<a href="__URL__/articlelist?p={$p-1}&key={$k}">
+			<i class="flaticon-left207"></i>
+			
+			<span>上一页</span>
+			</a>
+		</div>
+		</gt>
+		<!-- <input type="text" /> -->
+		
+		<lt name="p" value="$maxpage">
+		<div class="right">
+			<a href="__URL__/articlelist?p={$p+1}&key={$k}">
+			<span>下一页</span>
+			<i class="flaticon-right218"></i>
+			</a>
+		</div>
+		</lt>
+		
+		<div class="sy">
+			<a href="__URL__/articlelist?p=1&key={$k}">
+				首页
+			</a>
+		</div>
+		
+		
+		<div class="wy">
+			<a href="__URL__/articlelist?p={$maxpage}&key={$k}">
+				尾页
+			</a>
+		</div>
+		
+	</div>
+	
+	<div class="line">
+		<form method="get" action="__URL__/articlelist">
+			<input class="lineinput" style="width:100px" name="key" type="text" value="{$k}" />
+			<button class="btn ui-deepblue" type="submit" >搜索</button>
+		</form>
+	</div>
+	<div class="line">
+		<a class="btn ui-green" href="__URL__/addarticle">新增</a>
+	</div>
+	
+	<script src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="__PUBLIC__/resource/js/common/ui.js"></script>
+</body>
+</html>

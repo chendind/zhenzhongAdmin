@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/resource/css/flaticon/flaticon.css">
+	<link rel="stylesheet" href="__PUBLIC__/resource/css/common/content.css">
+		<link href="__PUBLIC__/uedit/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+	<div class="line">
+		<h1>修改管理员个人信息</h1>
+		
+	</div>
+	<form method="post" action="__URL__/selfedit" >
+	<table class="tableB">
+		<tr>
+			<th>昵称：</th>
+			<td>
+				<input style="width: 200px" name="username" type="text" value="{$nickname}" required="required"/>
+			</td>
+		</tr>
+		<tr>
+			<th></th>
+			<td>
+				<input type="hidden" name="ispass" value="0" />
+				<button type="submit" class="btn ui-green">修改</button>
+			</td>
+		</tr>
+	</table>	    	
+	</form>
+	
+	<form method="post" action="__URL__/selfedit" id="f2" >
+	<table class="tableB">
+		<tr>
+			<th>旧密码：</th>
+			<td>
+				<input style="width: 200px" id="o1" type="password" value="" required="required" />
+				<input name="oldpass" id="o2" type="hidden" value="" required="required" />
+			</td>
+		</tr>
+		<tr>
+			<th>新密码：</th>
+			<td>
+				<input name="newpass" id="n3" type="hidden" value="" required="required" />
+				<input style="width: 200px" id="n1" type="password" value="" required="required" />
+			</td>
+		</tr>
+		<tr>
+			<th>请再次输入新密码：</th>
+			<td>
+				<input id="n2" style="width: 200px" type="password" value="" required="required" />
+			</td>
+		</tr>
+		<tr>
+			<th></th>
+			<td>
+				<button class="btn file ui-white" onClick="window.history.go(-1)">返回</button>
+				<input type="hidden" name="ispass" value="1" />
+				<button type="button" onclick="changepass()" class="btn ui-green">修改</button>
+			</td>
+		</tr>
+	</table>	    	
+	</form>
+	
+	
+	
+	
+	<script src="__PUBLIC__/resource/js/jquery/jquery-1.7.2.min.js"></script>
+	<script src="__PUBLIC__/resource/js/common/ui.js"></script>
+	 <!-- 配置文件 -->
+    <script type="text/javascript" src="__PUBLIC__/uedit/umeditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="__PUBLIC__/uedit/umeditor.min.js"></script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UM.getEditor('container');
+	
+    </script>
+    
+    <script src="__PUBLIC__/md5.js" ></script>
+    <script>
+	function changepass() {
+		if ($("#n1").val()!=$("#n2").val()) {
+			alert('两次密码输入不一致，请重新输入');
+			return;
+		}
+		else if ($("#n1").val()==$("#o1").val()) {
+			alert('新密码与旧密码不能一致，请重新输入');
+			return;
+		}
+		else{
+			$("#o2").val(hex_md5($("#o1").val()));
+			$("#n3").val(hex_md5($("#n1").val()));
+			$("#f2").submit();
+		}
+	}
+    </script>
+    
+    
+</body>
+</body>
+</html>
