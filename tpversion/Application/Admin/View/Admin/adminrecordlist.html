@@ -38,7 +38,11 @@
 			</td>
 				
 			<td>
-				{$vo.adminrecord_state}
+				<if condition="$vo.adminrecord_state eq 1">
+					<span style="color: #66CD00">成功</span>
+				<else />
+					<span style="color: #ff0000">失败</span>
+				</if>
 			</td>
 			
 		

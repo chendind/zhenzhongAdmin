@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/resource/css/flaticon/flaticon.css">
+	<link rel="stylesheet" href="__PUBLIC__/resource/css/common/content.css">
+	<link href="__PUBLIC__/uedit/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+
+</head>
+<body>
+	<div class="line">
+		<h1>医师信息编辑页</h1>
+		
+	</div>
+	<form method="post" action="__URL__/doctorrest" id="f1">
+	<table class="tableB">
+		<tr>
+			<th>昵称：</th>
+			<td>
+				<input name="id" type="hidden" value="{$csdetail.customservice_id}" />
+				<input name="nickname" id="nickname" type="text" required="required" value="{$csdetail.customservice_nickname}"/>
+			</td>
+		</tr>
+		<tr>
+			<th>密码：</th>
+			<td>
+				<input name="pass" id="p1" type="hidden" />
+				<input id="p2" type="password" required="required" />
+			</td>
+		</tr>
+		<tr>
+			<th>部门：</th>
+			<td>
+				<select name="department">
+					<volist name="list" id="vo">
+						<option value="{$vo.keshi_name}"
+							<if condition="$vo['keshi_name'] eq $csdetail['customservice_department']">
+								selected
+							</if>
+							>{$vo.keshi_name}</option>
+					</volist>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>性别：</th>
+			<td>
+				<select name="ismale">
+					<option value="1"
+						<eq name="$csdetail['customservice_ismale']" value="1">
+							selected
+						</eq>
+						>男</option>
+					<option value="0"
+						<eq name="$csdetail['customservice_ismale']" value="0">
+							selected
+						</eq>
+						>女</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th></th>
+			<td>
+				<button  class="btn file ui-white" onClick="window.history.go(-1)">返回</button>
+				<input type="hidden" name="operation" value="edit" />
+				<button onclick="formsubmit()" class="btn ui-green">提交</button>
+			</td>
+		</tr>
+	</table>	    	
+	</form>
+	<script src="__PUBLIC__/resource/js/jquery/jquery-1.7.2.min.js"></script>
+	<script src="__PUBLIC__/resource/js/common/ui.js"></script>
+	 <!-- 配置文件 -->
+    <script type="text/javascript" src="__PUBLIC__/uedit/umeditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="__PUBLIC__/uedit/umeditor.min.js"></script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UM.getEditor('container');
+    </script>
+     <script src="__PUBLIC__/md5.js" ></script>
+    <script>
+	function formsubmit(){
+		
+		if ($("#p2").val()==''||$("#p2").val()==null) {
+			$("#p1").val("");
+		}
+		else{
+			$("#p1").val(hex_md5($("#p2").val()));
+		}
+		$("#f1").submit();
+	}
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/resource/css/flaticon/flaticon.css">
+	<link rel="stylesheet" href="__PUBLIC__/resource/css/common/content.css">
+</head>
+<body>
+	<div class="line">
+		<h1>科室管理</h1>
+		
+	</div>
+	<table class="tableA">
+		<tr>
+			<th>ID</th>
+			<th>科室名</th>
+			<th>科室介绍</th>
+			<th>科室医师数</th>
+			<neq name="perm" value="common">
+				<th>操作</th>
+			</neq>
+		</tr>
+		
+		
+		<volist name="keshiList" id="vo">
+			
+		<tr>
+			<form method="post" action="__URL__/keshiedit">
+			<td>
+				{$vo.keshi_id}
+				<input name="id" value="{$vo.keshi_id}" type="hidden" />
+			</td>
+			<td>
+				<input name="name" value="{$vo.keshi_name}" type="text" required="required" />
+			</td>
+			<td>
+				<input name="descri" value="{$vo.keshi_descri}" type="text" required="required" />
+			</td>
+			<td>
+				{$vo.count}
+			</td>
+			
+			<neq name="perm" value="common">
+			<td>
+				<button type="submit" class="btn ui-deepblue">
+					修改
+				</button>
+				
+				<if condition="$vo['count'] eq 0 ">
+					<a href="__URL__/keshidelete?id={$vo.keshi_id}" class="btn ui-red">
+						移除
+					</a>
+				</if>
+					
+					
+				
+			</td>
+			</neq>
+			</form>
+		</tr>
+			
+		</volist>
+		
+	</table>
+	
+	
+	
+	<div class="line">
+		<a class="btn ui-green" href="__URL__/keshiaddshow">新增</a>
+	</div>
+	
+	<script src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="__PUBLIC__/resource/js/common/ui.js"></script>
+</body>
+</html>

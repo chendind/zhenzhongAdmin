@@ -4,41 +4,34 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/resource/css/flaticon/flaticon.css">
 	<link rel="stylesheet" href="__PUBLIC__/resource/css/common/content.css">
-		<link href="__PUBLIC__/uedit/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+	<link href="__PUBLIC__/uedit/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+
 </head>
 <body>
 	<div class="line">
-		<h1>修改文章</h1>
+		<h1>新增科室</h1>
 		
 	</div>
-	<form method="post" action="__URL__/articlerest" enctype="multipart/form-data">
+	<form method="post" action="__URL__/keshiadd" id="f1">
 	<table class="tableB">
 		<tr>
-			<th>标题</th>
+			<th>科室名：</th>
 			<td>
-				<input name="title" type="text" value="{$detail.article_title}" required="required"/>
+				<input name="name"  type="text" required="required"/>
 			</td>
 		</tr>
 		<tr>
-			<th>正文：</th>
+			<th>科室描述：</th>
 			<td>
-					<script id="container" name="content" type="text/plain">
-        {$detail.article_content|htmlspecialchars_decode|stripslashes}
-				</script>
+				<input name="descri" type="text" required="required"/>
 			</td>
 		</tr>
+		
 		<tr>
 			<th></th>
 			<td>
 				<button  class="btn file ui-white" onClick="window.history.go(-1)">返回</button>
-				<neq  name="perm" value='\"common\"'>
-					<input type="hidden" name="id" value="{$detail.article_id}" />
-					<input type="hidden" name="operation" value="edit" />
-					<button type="submit" class="btn ui-green">修改</button>
-				</neq>
-				
-				
-				
+				<button type="submit" class="btn ui-green">提交</button>
 			</td>
 		</tr>
 	</table>	    	
@@ -52,8 +45,6 @@
     <!-- 实例化编辑器 -->
     <script type="text/javascript">
         var ue = UM.getEditor('container');
-	
     </script>
-</body>
 </body>
 </html>
