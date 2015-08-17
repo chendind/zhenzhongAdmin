@@ -32,7 +32,7 @@
 		$.fn.loadSubMenu = function(){
 			var $this = $(this);
 			var id = $this.attr("data-classid");
-			$.post("./data.json",{id:id},function(data){
+			$.post("../usermanage/data.json",{id:id},function(data){
 				switch(data.state){
 					case "0": 
 						$this.addClass("hasload");
@@ -79,13 +79,20 @@
 			}
 			else{
 			// if(reader){
-				
 				var size;
-				if(f.size/1024 < 1024){
-					size = Math.round(f.size*100/1024)/100 + "KB";
+				size = Math.round(f.size*100/1024)/100;
+				if($(this).attr("data-maxsize")){
+					var maxsize = $(this).attr("data-maxsize");
+					if(size > maxsize){
+						alert("大小不能超过"+maxsize+"KB");
+						return false;
+					}
+				}
+				if(size > 1024){
+					size = Math.round(size*100/1024)/100 + "MB";
 				}
 				else{
-					size = Math.round(f.size*100/1048576)/100 + "MB";
+					size += "KB";
 				}
 	    		$(this).parent().attr("data-path","文件名："+f.name+" 文件大小："+size);
 			// }
