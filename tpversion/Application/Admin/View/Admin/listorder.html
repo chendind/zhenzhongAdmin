@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/resource/css/flaticon/flaticon.css">
+	<link rel="stylesheet" href="__PUBLIC__/resource/css/common/content.css">
+</head>
+<body>
+	<div class="line">
+		<h1>订单列表</h1>
+		
+	</div>
+	<table class="tableA">
+		<tr>
+			<th>订单号</th>
+			<th>下单时间</th>
+			<th>用户编号</th>
+			<th>用户手机号</th>
+			<th>支付状态</th>
+			<th>支付方式</th>
+			<th>支付时间</th>
+			<th>金额</th>
+			<th>订单类型</th>
+			<th>备注</th>
+		</tr>
+		
+		
+		<volist name="list" id="vo">
+			
+		<tr>
+			
+			<td>{$vo.order_id}</td>
+			<td>{$vo.order_requesttime|date='Y-m-d H:M:s',###}</td>
+			<td>
+				{$vo.order_uid}
+			</td>
+			<td>
+				{$vo.user_phone}
+			</td>
+			<td>
+				<if condition="$vo.order_state eq 0">
+					未支付
+				<else/>
+					已支付
+				</if>
+			</td>
+			
+			<td> 
+				<switch name="vo['order_payway']">
+					<case value="0"></case>
+					<case value="1">分享免费</case>
+					<case value="2">支付宝</case>
+					<case value="3">微信</case>
+					<default />
+				</switch>
+			</td>
+			<td>
+				<if condition="$vo.order_state eq 1">
+					{$vo.order_receivetime|date='Y-m-d H:M:s',###}</td>
+				</if>
+			</td>
+			<td>
+				{$vo.order_price}
+			</td>
+			
+			<td>
+				<switch name="vo['order_type']">
+					<case value="0">智能分析</case>
+					<case value="1">智能分析后聊天</case>
+					<case value="2">直接聊天</case>
+					<default />
+				</switch>
+			</td>
+			<td>
+				<if condition="$vo['order_type'] eq 1">
+					关联订单订单号{$vo.order_link}
+				</if>
+			</td>
+		
+		</tr>
+			
+		</volist>
+		
+	</table>
+	<div class="line ui-pagenav">
+		<gt name="p" value="1">
+		<div class="left">
+			<a href="__URL__/listorder?p={$p-1}&start={$start}&end={$end}&phone={$phone}&state={$state}">
+			<i class="flaticon-left207"></i>
+			
+			<span>上一页</span>
+			</a>
+		</div>
+		</gt>
+		<!-- <input type="text" /> -->
+		
+		<lt name="p" value="$maxpage">
+		<div class="right">
+			<a href="__URL__/listorder?p={$p+1}&start={$start}&end={$end}&phone={$phone}&state={$state}">
+			<span>下一页</span>
+			<i class="flaticon-right218"></i>
+			</a>
+		</div>
+		</lt>
+		
+		<div class="sy">
+			<a href="__URL__/listorder?p=1&start={$start}&end={$end}&phone={$phone}&state={$state}">
+				首页
+			</a>
+		</div>
+		
+		
+		<div class="wy">
+			<a href="__URL__/listorder?p={$maxpage}&start={$start}&end={$end}&phone={$phone}&state={$state}">
+				尾页
+			</a>
+		</div>
+		
+	</div>
+	
+	<div class="line">
+		<form method="get" action="__URL__/listorder">
+			订单号：<input class="lineinput" style="width:150px" name="oid" type="text" value="{$oid}" />
+			用户手机：<input class="lineinput" style="width:150px" name="phone" type="text" value="{$phone}" />
+			开始时间：<input class="lineinput" style="width:150px" name="start" type="date" value="{$start}" />
+			结束时间：<input class="lineinput" style="width:150px" name="end" type="date" value="{$end}" />
+			当前订单状态：
+			<select name="state">
+				<option value="-1" <eq name="state" value="-1">selected</eq>>全部</option>
+				<option value="0" <eq name="state" value="0">selected</eq>>未支付</option>
+				<option value="1" <eq name="state" value="1">selected</eq>>已支付</option>
+			</select>
+			<button class="btn ui-deepblue" type="submit" >搜索</button>
+		</form>
+	</div>
+	<script src="http://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="__PUBLIC__/resource/js/common/ui.js"></script>
+</body>
+</html>
